@@ -1,1 +1,1 @@
-# budget-tracker-frontend
+# frontend-budget-tracker
