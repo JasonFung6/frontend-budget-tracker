@@ -1,4 +1,4 @@
-# Budget Traceker Frontend
+# Budget Tracker Frontend
 This is Siu Kei's version of the FE Budget Tracker repo
 
 # Running the app
