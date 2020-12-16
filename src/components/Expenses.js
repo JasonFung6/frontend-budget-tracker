@@ -1,9 +1,11 @@
 import React from 'react'
 
-const SpendInput = () => {
+const Expenses = () => {
   return (
     <h1>This is where you input spend</h1>
   )
 }
 
-export default SpendInput
+export default Expenses
+
+

@@ -4,8 +4,8 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import NavBar from './common/NavBar'
 import Home from './components/Home'
 import Profile from './components/Profile'
-import Expenditure from './components/Expenditure'
-import SpendInput from './components/SpendInput'
+import Summary from './components/Summary'
+import Expenses from './components/Expenses'
 
 const App = () => {
   return (
@@ -14,8 +14,8 @@ const App = () => {
       <Switch>
         <Route exact path='/' component={Home} />
         <Route path='/profile' component={Profile} />
-        <Route path='/spend' component={SpendInput} />
-        <Route path='/expenditure' component={Expenditure} />
+        <Route path='/expenses' component={Expenses} />
+        <Route path='/summary' component={Summary} />
 
       </Switch>
 
