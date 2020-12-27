@@ -7,8 +7,8 @@ const NavBar = () => {
 
   // const [navBarActive, setnavBarActive] = React.useState(false)
 
-  // const toggleNavBar = () => {
-  //   return setnavBarActive(!navBarActive)
+  // const navBarToggle = () => {
+  //   setnavBarActive(!navBarActive)
   // }
 
   return (
@@ -19,9 +19,10 @@ const NavBar = () => {
           width='50'
           height='50'
           alt='Image of User'
-        /> Hi, Suzy
+        />
+        <span className='user-greeting'>Hi, Suzy</span>
       </Navbar.Brand>
-      <Navbar.Toggle aria-controls="basic-navbar-nav" />
+      <Navbar.Toggle aria-controls="basic-navbar-nav"/>
       <Navbar.Collapse id="basic-navbar-nav" >
         <Nav className="mx-auto">
           <Nav.Link as={Link} to='/'>Home</Nav.Link>

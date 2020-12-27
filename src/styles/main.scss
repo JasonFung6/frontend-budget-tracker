@@ -26,6 +26,48 @@ p {
   margin: 0;
 }
 
+//Navbar styles
+.navbar {
+  .navbar-brand {
+    display: flex;
+    align-items: center;
+    img {
+      margin-right: 10%;
+    }
+    .user-greeting {
+      font-size: 14px;
+    }
+  }
+}
+
+@media only screen and (min-width: 990px) {
+  .navbar {
+    height: 10vh;
+    padding: 0 1rem;
+    .navbar-collapse {
+      height: 100%;
+      .navbar-nav {
+        height: 100%;
+        width: 70%;
+        display: flex;
+        justify-content: space-evenly;
+        .nav-link {
+          height: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex: 1;
+          color: white;
+        }
+        .nav-link:hover {
+          background-color: white;
+          color: #2B2D49;
+        }
+      }
+    }
+  }
+}
+
 //Home page styles
 .home-wrapper {
   display: flex;
