@@ -217,6 +217,7 @@ const Home = () => {
             <div className='transport'>
               <div className='icon' value='Transport'>
                 <i className="ri-car-line"></i>
+              </div>
               <p>Transport</p>
             </div>
             <div className='eatingOut'>
@@ -236,6 +237,12 @@ const Home = () => {
                 <i className="ri-user-line"></i>
               </div>
               <p>Person</p>
+            </div>
+            <div className='personalCare'>
+              <div className='icon' value='Personal Care'>
+                <i className="ri-heart-line"></i>
+              </div>
+              <p>Personal Care</p>
             </div>
             <div className='miscellaneous'>
               <div className='icon' value='Miscellaneous'>
