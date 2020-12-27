@@ -90,6 +90,31 @@ const Home = () => {
     price: 2650,
     date: '27/02/2020',
     category: 'Shopping'
+  }, {
+    name: 'Taxi',
+    price: 12.50,
+    date: '27/02/2020',
+    category: 'Transport'
+  }, {
+    name: 'Jason',
+    price: 36,
+    date: '20/02/2020',
+    category: 'Person'
+  }, {
+    name: 'Dentist',
+    price: 250,
+    date: '19/02/2020',
+    category: 'Personal Care'
+  }, {
+    name: 'Vitamins',
+    price: 12,
+    date: '18/02/2020',
+    category: 'Personal Care'
+  }, {
+    name: 'Unicef',
+    price: 20,
+    date: '17/02/2020',
+    category: 'Charity'
   }]
 
   const balance = 568.80
@@ -173,7 +198,7 @@ const Home = () => {
             </div>
             <div className='bill'>
               <div className='icon' value='Bill'>
-                <i className="ri-bill-line"></i>
+                <i className="ri-lightbulb-flash-line"></i>
               </div>
               <p>Bill</p>
             </div>
@@ -189,11 +214,10 @@ const Home = () => {
               </div>
               <p>Holiday</p>
             </div>
-            <div className='travel'>
-              <div className='icon' value='Travel'>
-                <i className="ri-taxi-line"></i>
-              </div>
-              <p>Travel</p>
+            <div className='transport'>
+              <div className='icon' value='Transport'>
+                <i className="ri-car-line"></i>
+              <p>Transport</p>
             </div>
             <div className='eatingOut'>
               <div className='icon' value='Eating Out'>
@@ -201,9 +225,21 @@ const Home = () => {
               </div>
               <p>Eating Out</p>
             </div>
+            <div className='charity'>
+              <div className='icon' value='Charity'>
+                <i className="ri-service-line"></i>
+              </div>
+              <p>Charity</p>
+            </div>
+            <div className='person'>
+              <div className='icon' value='Person'>
+                <i className="ri-user-line"></i>
+              </div>
+              <p>Person</p>
+            </div>
             <div className='miscellaneous'>
               <div className='icon' value='Miscellaneous'>
-                <i className="ri-gift-line"></i>
+                <i className="ri-question-mark"></i>
               </div>
               <p>Miscellaneous</p>
             </div>
