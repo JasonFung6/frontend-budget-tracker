@@ -2,28 +2,27 @@ import React from 'react'
 import Graphs from '../images/Graphs.png'
 import { Button } from 'react-bootstrap'
 import Avatar from 'react-avatar'
-// import Carousel from 'react-multi-carousel'
-// import { CarouselProvider, Slider, Slide, ButtonBack, ButtonNext } from 'pure-react-carousel'
+import Carousel from 'react-multi-carousel'
 
 const Home = () => {
 
-  // const responsive = {
-  //   desktop: {
-  //     breakpoint: { max: 3000, min: 1024 },
-  //     items: 5,
-  //     slidesToSlide: 1
-  //   },
-  //   tablet: {
-  //     breakpoint: { max: 1024, min: 464 },
-  //     items: 2,
-  //     slidesToSlide: 2 // optional, default to 1.
-  //   },
-  //   mobile: {
-  //     breakpoint: { max: 464, min: 0 },
-  //     items: 1,
-  //     slidesToSlide: 1 // optional, default to 1.
-  //   }
-  // }
+  const responsive = {
+    desktop: {
+      breakpoint: { max: 3000, min: 1024 },
+      items: 5,
+      slidesToSlide: 1
+    },
+    tablet: {
+      breakpoint: { max: 1024, min: 464 },
+      items: 5,
+      slidesToSlide: 1 // optional, default to 1.
+    },
+    mobile: {
+      breakpoint: { max: 464, min: 0 },
+      items: 3,
+      slidesToSlide: 1 // optional, default to 1.
+    }
+  }
 
   const transactions = [{
     name: 'Netflix',
@@ -166,91 +165,81 @@ const Home = () => {
         <div className='home-categories-container'>
           <h2>Expenditure - <span>Nov</span> - <span>£1,412</span></h2>
           <div className='icons-container'>
-            {/* <CarouselProvider
-              naturalSlideWidth={300}
-              naturalSlideHeight={325}
-              totalSlides={5}
-              visibleSlides={3}
+            <Carousel
+              responsive={responsive}
+              keyBoardControl={true}
+              transitionDuration={800}
+              containerClass="carousel-container"
+              removeArrowOnDeviceType={['mobile']}
+              itemClass="carousel-item-padding-40-px"
             >
-              <Slider>
-                <Slide index={0}className='grocery'>
-                  <div className='icon' value='Grocery'>
-                    <i className="ri-shopping-cart-line"></i>
-                  </div>
-                  <p>Grocery</p>
-                </Slide>
-                <Slide index={1}>I am the second Slide.</Slide>
-                <Slide index={2}>I am the third Slide.</Slide>
-              </Slider>
-              <ButtonBack>Back</ButtonBack>
-              <ButtonNext>Next</ButtonNext> */}
-            <div className='grocery'>
-              <div className='icon' value='Grocery'>
-                <i className="ri-shopping-cart-line"></i>
+              <div className='grocery'>
+                <div className='icon' value='Grocery'>
+                  <i className="ri-shopping-cart-line"></i>
+                </div>
+                <p>Grocery</p>
               </div>
-              <p>Grocery</p>
-            </div>
-            <div className='shopping'>
-              <div className='icon' value='Shopping'>
-                <i className="ri-shopping-bag-line"></i>
+              <div className='shopping'>
+                <div className='icon' value='Shopping'>
+                  <i className="ri-shopping-bag-line"></i>
+                </div>
+                <p>Shopping</p>
               </div>
-              <p>Shopping</p>
-            </div>
-            <div className='bill'>
-              <div className='icon' value='Bill'>
-                <i className="ri-lightbulb-flash-line"></i>
+              <div className='bill'>
+                <div className='icon' value='Bill'>
+                  <i className="ri-lightbulb-flash-line"></i>
+                </div>
+                <p>Bill</p>
               </div>
-              <p>Bill</p>
-            </div>
-            <div className='entertainment'>
-              <div className='icon' value='Entertainment'>
-                <i className="ri-game-line"></i>
+              <div className='entertainment'>
+                <div className='icon' value='Entertainment'>
+                  <i className="ri-game-line"></i>
+                </div>
+                <p>Entertainment</p>
               </div>
-              <p>Entertainment</p>
-            </div>
-            <div className='holiday'>
-              <div className='icon' value='Holiday'>
-                <i className="ri-plane-line"></i>
+              <div className='holiday'>
+                <div className='icon' value='Holiday'>
+                  <i className="ri-plane-line"></i>
+                </div>
+                <p>Holiday</p>
               </div>
-              <p>Holiday</p>
-            </div>
-            <div className='transport'>
-              <div className='icon' value='Transport'>
-                <i className="ri-car-line"></i>
+              <div className='transport'>
+                <div className='icon' value='Transport'>
+                  <i className="ri-car-line"></i>
+                </div>
+                <p>Transport</p>
               </div>
-              <p>Transport</p>
-            </div>
-            <div className='eatingOut'>
-              <div className='icon' value='Eating Out'>
-                <i className="ri-restaurant-line"></i>
+              <div className='eatingOut'>
+                <div className='icon' value='Eating Out'>
+                  <i className="ri-restaurant-line"></i>
+                </div>
+                <p>Eating Out</p>
               </div>
-              <p>Eating Out</p>
-            </div>
-            <div className='charity'>
-              <div className='icon' value='Charity'>
-                <i className="ri-service-line"></i>
+              <div className='charity'>
+                <div className='icon' value='Charity'>
+                  <i className="ri-service-line"></i>
+                </div>
+                <p>Charity</p>
               </div>
-              <p>Charity</p>
-            </div>
-            <div className='person'>
-              <div className='icon' value='Person'>
-                <i className="ri-user-line"></i>
+              <div className='person'>
+                <div className='icon' value='Person'>
+                  <i className="ri-user-line"></i>
+                </div>
+                <p>Person</p>
               </div>
-              <p>Person</p>
-            </div>
-            <div className='personalCare'>
-              <div className='icon' value='Personal Care'>
-                <i className="ri-heart-line"></i>
+              <div className='personalCare'>
+                <div className='icon' value='Personal Care'>
+                  <i className="ri-heart-line"></i>
+                </div>
+                <p>Personal Care</p>
               </div>
-              <p>Personal Care</p>
-            </div>
-            <div className='miscellaneous'>
-              <div className='icon' value='Miscellaneous'>
-                <i className="ri-question-mark"></i>
+              <div className='miscellaneous'>
+                <div className='icon' value='Miscellaneous'>
+                  <i className="ri-question-mark"></i>
+                </div>
+                <p>Miscellaneous</p>
               </div>
-              <p>Miscellaneous</p>
-            </div>
-            {/* </CarouselProvider> */}
+            </Carousel>
           </div>
         </div>
       </div>
