@@ -235,7 +235,7 @@ const Home = () => {
               </div>
               <div className='miscellaneous'>
                 <div className='icon' value='Miscellaneous'>
-                  <i className="ri-question-mark"></i>
+                  <i className="ri-file-copy-line"></i>
                 </div>
                 <p>Miscellaneous</p>
               </div>
