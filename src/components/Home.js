@@ -1,10 +1,65 @@
 import React from 'react'
-import Graphs from '../images/Graphs.png'
+// import Graphs from '../images/Graphs.png'
 import { Button } from 'react-bootstrap'
 import Avatar from 'react-avatar'
 import Carousel from 'react-multi-carousel'
 
+import {
+  BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer
+} from 'recharts'
+
+
+
+// export default class Example extends PureComponent {
+
+//   render() {
+//     return (
+//       <BarChart
+//         width={500}
+//         height={300}
+//         data={data}
+//         margin={{
+//           top: 20, right: 30, left: 20, bottom: 5,
+//         }}
+//       >
+//         <CartesianGrid strokeDasharray="3 3" />
+//         <XAxis dataKey="name" />
+//         <YAxis />
+//         <Tooltip />
+//         <Legend />
+//         <Bar dataKey="pv" stackId="a" fill="#8884d8" />
+//         <Bar dataKey="uv" stackId="a" fill="#82ca9d" />
+//       </BarChart>
+//     );
+//   }
+// }
+
+
 const Home = () => {
+
+  const data = [
+    {
+      name: 'Jan', Spent: 400, Saved: 600
+    },
+    {
+      name: 'Feb', Spent: 300, Saved: 700
+    },
+    {
+      name: 'Mar', Spent: 200, Saved: 800
+    },
+    {
+      name: 'Apr', Spent: 278, Saved: 722
+    },
+    {
+      name: 'May', Spent: 189, Saved: 811
+    },
+    {
+      name: 'Jun', Spent: 239, Saved: 761
+    },
+    {
+      name: 'Jul', Spent: 349, Saved: 651
+    }
+  ]
 
   const responsive = {
     desktop: {
@@ -155,9 +210,27 @@ const Home = () => {
         <div className='home-stats-container'>
           <h2>Spending Statistics</h2>
           <div className='home-graph-container'>
-            <img src={Graphs}
+            {/* <img src={Graphs}
               width='500'
-            />
+            /> */}
+            <ResponsiveContainer
+              width='90%'
+              height={300}
+            >
+              <BarChart
+                data={data}
+                barCategoryGap='30%'
+              >
+                <CartesianGrid strokeDasharray="3 3" vertical={false} horizontal={false} />
+                <XAxis dataKey="name" axisLine={false} tickLine={false} />
+                <YAxis hide={true} />
+                <Tooltip />
+                <Legend />
+                <Bar dataKey="Spent" stackId="a" fill="#00ACBD" radius={[0, 0, 10, 10]}animationDuration={1500}/>
+                <Bar dataKey="Saved" stackId="a" fill="#EBAC7F" radius={[10, 10, 0, 0]} animationDuration={1500}/>
+              </BarChart>
+            </ResponsiveContainer>
+
           </div>
 
           {/* <div>Graph goes here</div> */}

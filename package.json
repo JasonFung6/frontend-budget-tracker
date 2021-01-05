@@ -15,7 +15,7 @@
     "react-perfect-scrollbar": "^1.5.8",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.0",
-    "recharts": "^2.0.0",
+    "recharts": "^2.0.0-beta.8",
     "remixicon": "^2.5.0"
   },
   "scripts": {
