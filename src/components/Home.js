@@ -5,7 +5,7 @@ import Avatar from 'react-avatar'
 import Carousel from 'react-multi-carousel'
 
 import {
-  BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer
+  Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, ComposedChart, Area
 } from 'recharts'
 
 
@@ -217,9 +217,12 @@ const Home = () => {
               width='90%'
               height={300}
             >
-              <BarChart
+              <ComposedChart
                 data={data}
                 barCategoryGap='30%'
+                margin={{
+                  top: 20, right: 40, bottom: 20, left: 40
+                }}
               >
                 <CartesianGrid strokeDasharray="3 3" vertical={false} horizontal={false} />
                 <XAxis dataKey="name" axisLine={false} tickLine={false} />
@@ -228,7 +231,8 @@ const Home = () => {
                 <Legend />
                 <Bar dataKey="Spent" stackId="a" fill="#00ACBD" radius={[0, 0, 10, 10]}animationDuration={1500}/>
                 <Bar dataKey="Saved" stackId="a" fill="#EBAC7F" radius={[10, 10, 0, 0]} animationDuration={1500}/>
-              </BarChart>
+                <Area type="monotone" dataKey="Spent" stroke="#00BD35" dot={false} legendType="none" fill="#00BD35" fillOpacity={0.2}/>
+              </ComposedChart>
             </ResponsiveContainer>
 
           </div>
