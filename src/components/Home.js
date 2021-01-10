@@ -1,48 +1,35 @@
 import React from 'react'
-// import Graphs from '../images/Graphs.png'
 import { Button } from 'react-bootstrap'
 import Avatar from 'react-avatar'
 import Carousel from 'react-multi-carousel'
 
 import {
-  Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, ComposedChart, Area
+  Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend,  ComposedChart, ResponsiveContainer, Area
 } from 'recharts'
 
 
-
-// export default class Example extends PureComponent {
-
-//   render() {
-//     return (
-//       <BarChart
-//         width={500}
-//         height={300}
-//         data={data}
-//         margin={{
-//           top: 20, right: 30, left: 20, bottom: 5,
-//         }}
-//       >
-//         <CartesianGrid strokeDasharray="3 3" />
-//         <XAxis dataKey="name" />
-//         <YAxis />
-//         <Tooltip />
-//         <Legend />
-//         <Bar dataKey="pv" stackId="a" fill="#8884d8" />
-//         <Bar dataKey="uv" stackId="a" fill="#82ca9d" />
-//       </BarChart>
-//     );
-//   }
-// }
-
-
+//* Incoming spend data have to come in as 1 array made up of individual arrays each containing 1 object (that contains the month spend)
 const Home = () => {
+
+  const CustomTooltip = ({ active, payload, label }) => {
+    if (active) {
+      return (
+        <div className="custom-tooltip">
+          <h2 className='label-heading'>{label}</h2>
+          <p className="label-spent">{`${payload[0].name} : ${payload[0].value}`}</p>
+          <p className="label-saved">{`${payload[1].name} : ${payload[1].value}`}</p>
+        </div>
+      )
+    }
+    return null
+  }
 
   const data = [
     {
       name: 'Jan', Spent: 400, Saved: 600
     },
     {
-      name: 'Feb', Spent: 300, Saved: 700
+      name: 'Feb', Spent: 300, Saved: 1700
     },
     {
       name: 'Mar', Spent: 200, Saved: 800
@@ -58,6 +45,21 @@ const Home = () => {
     },
     {
       name: 'Jul', Spent: 349, Saved: 651
+    },
+    {
+      name: 'Aug', Spent: 200, Saved: 800
+    },
+    {
+      name: 'Sept', Spent: 278, Saved: 722
+    },
+    {
+      name: 'Oct', Spent: 189, Saved: 811
+    },
+    {
+      name: 'Nov', Spent: 239, Saved: 761
+    },
+    {
+      name: 'Dec', Spent: 349, Saved: 651
     }
   ]
 
@@ -98,7 +100,7 @@ const Home = () => {
     name: 'McDonalds',
     price: 15.99,
     date: '09/04/2020',
-    category: 'Eating Out'
+    category: 'Food & Drink'
   }, {
     name: 'Tesco',
     price: 175.85,
@@ -210,9 +212,6 @@ const Home = () => {
         <div className='home-stats-container'>
           <h2>Spending Statistics</h2>
           <div className='home-graph-container'>
-            {/* <img src={Graphs}
-              width='500'
-            /> */}
             <ResponsiveContainer
               width='90%'
               height={300}
@@ -227,17 +226,14 @@ const Home = () => {
                 <CartesianGrid strokeDasharray="3 3" vertical={false} horizontal={false} />
                 <XAxis dataKey="name" axisLine={false} tickLine={false} />
                 <YAxis hide={true} />
-                <Tooltip />
+                <Tooltip cursor={false} offset={30} content={CustomTooltip} />
                 <Legend />
                 <Bar dataKey="Spent" stackId="a" fill="#00ACBD" radius={[0, 0, 10, 10]}animationDuration={1500}/>
                 <Bar dataKey="Saved" stackId="a" fill="#EBAC7F" radius={[10, 10, 0, 0]} animationDuration={1500}/>
-                <Area type="monotone" dataKey="Spent" stroke="#00BD35" dot={false} legendType="none" fill="#00BD35" fillOpacity={0.2}/>
+                <Area type="monotone" dataKey="Spent" stroke="#00BD35" dot={false} legendType="none" fill="#00ACBD" fillOpacity={0.2} strokeWidth={2} />
               </ComposedChart>
             </ResponsiveContainer>
-
           </div>
-
-          {/* <div>Graph goes here</div> */}
         </div>
         <div className='home-categories-container'>
           <h2>Expenditure - <span>Nov</span> - <span>£1,412</span></h2>
@@ -246,7 +242,7 @@ const Home = () => {
               responsive={responsive}
               keyBoardControl={true}
               transitionDuration={800}
-              containerClass="carousel-container"
+              containerClass="carousel-icon-container"
               removeArrowOnDeviceType={['mobile']}
               itemClass="carousel-item-padding-40-px"
             >
@@ -286,11 +282,11 @@ const Home = () => {
                 </div>
                 <p>Transport</p>
               </div>
-              <div className='eatingOut'>
-                <div className='icon' value='Eating Out'>
+              <div className='foodDrink'>
+                <div className='icon' value='Food & Drink'>
                   <i className="ri-restaurant-line"></i>
                 </div>
-                <p>Eating Out</p>
+                <p>Food & Drink</p>
               </div>
               <div className='charity'>
                 <div className='icon' value='Charity'>
