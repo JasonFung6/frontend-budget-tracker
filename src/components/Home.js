@@ -11,6 +11,8 @@ import {
 //* Incoming spend data have to come in as 1 array made up of individual arrays each containing 1 object (that contains the month spend)
 const Home = () => {
 
+  const [category, setCategory] = React.useState(null)
+
   const CustomTooltip = ({ active, payload, label }) => {
     if (active) {
       return (
@@ -175,6 +177,12 @@ const Home = () => {
 
   const balance = 568.80
 
+  const categoryHandler = (e) => {
+    setCategory(e.target.id)
+  }
+
+  console.log(category)
+
   return (
     <div className='wrapper home-wrapper'>
       <div className='home-LHS-container'>
@@ -185,6 +193,30 @@ const Home = () => {
             <Button variant='nav-theme'>Add Payment</Button>
           </div>
           <div className='home-summary-card-transactions'>
+            {/* {category === null ?
+              transactions.map((item,index) => {
+                return (
+                  <div className='ind-transaction' key={index}>
+                    <Avatar
+                      name={item.name}
+                      size='60'
+                      round={true}
+                      textSizeRatio={2}
+                      className='avatar'
+                    />
+                    <div className='transaction-details'>
+                      <p>{item.name}</p>
+                      <p>{item.date}</p>
+                    </div>
+                    <div className='transaction-price'>
+                      <p>£{item.price}</p>
+                    </div>
+                  </div>
+                )
+              })
+              :
+
+            } */}
             {transactions.map((item,index) => {
               return (
                 <div className='ind-transaction' key={index}>
@@ -246,69 +278,69 @@ const Home = () => {
               removeArrowOnDeviceType={['mobile']}
               itemClass="carousel-item-padding-40-px"
             >
-              <div className='grocery'>
-                <div className='icon' value='Grocery'>
-                  <i className="ri-shopping-cart-line"></i>
+              <div className='grocery' id='Grocery' onClick={categoryHandler}>
+                <div className='icon' id='Grocery'>
+                  <i className="ri-shopping-cart-line" id='Grocery'></i>
                 </div>
                 <p>Grocery</p>
               </div>
-              <div className='shopping'>
-                <div className='icon' value='Shopping'>
-                  <i className="ri-shopping-bag-line"></i>
+              <div className='shopping' id='Shopping' onClick={categoryHandler}>
+                <div className='icon' id='Shopping'>
+                  <i className="ri-shopping-bag-line" id='Shopping'></i>
                 </div>
                 <p>Shopping</p>
               </div>
-              <div className='bill'>
-                <div className='icon' value='Bill'>
-                  <i className="ri-lightbulb-flash-line"></i>
+              <div className='bill' id='Bill' onClick={categoryHandler}>
+                <div className='icon' id='Bill'>
+                  <i className="ri-lightbulb-flash-line" id='Bill'></i>
                 </div>
                 <p>Bill</p>
               </div>
-              <div className='entertainment'>
-                <div className='icon' value='Entertainment'>
-                  <i className="ri-game-line"></i>
+              <div className='entertainment' id='Entertainment' onClick={categoryHandler}>
+                <div className='icon' id='Entertainment'>
+                  <i className="ri-game-line" id='Entertainment'></i>
                 </div>
                 <p>Entertainment</p>
               </div>
-              <div className='holiday'>
-                <div className='icon' value='Holiday'>
-                  <i className="ri-plane-line"></i>
+              <div className='holiday' id='Holiday' onClick={categoryHandler}>
+                <div className='icon' id='Holiday'>
+                  <i className="ri-plane-line" id='Holiday'></i>
                 </div>
                 <p>Holiday</p>
               </div>
-              <div className='transport'>
-                <div className='icon' value='Transport'>
-                  <i className="ri-car-line"></i>
+              <div className='transport' id='Transport' onClick={categoryHandler}>
+                <div className='icon' id='Transport'>
+                  <i className="ri-car-line" id='Transport'></i>
                 </div>
                 <p>Transport</p>
               </div>
-              <div className='foodDrink'>
-                <div className='icon' value='Food & Drink'>
-                  <i className="ri-restaurant-line"></i>
+              <div className='foodDrink' id='Food & Drink' onClick={categoryHandler}>
+                <div className='icon' id='Food & Drink'>
+                  <i className="ri-restaurant-line" id='Food & Drink'></i>
                 </div>
                 <p>Food & Drink</p>
               </div>
-              <div className='charity'>
-                <div className='icon' value='Charity'>
-                  <i className="ri-service-line"></i>
+              <div className='charity' id='Charity' onClick={categoryHandler}>
+                <div className='icon' id='Charity'>
+                  <i className="ri-service-line" id='Charity'></i>
                 </div>
                 <p>Charity</p>
               </div>
-              <div className='person'>
-                <div className='icon' value='Person'>
-                  <i className="ri-user-line"></i>
+              <div className='person' id='Person' onClick={categoryHandler}>
+                <div className='icon' id='Person'>
+                  <i className="ri-user-line" id='Person'></i>
                 </div>
                 <p>Person</p>
               </div>
-              <div className='personalCare'>
-                <div className='icon' value='Personal Care'>
-                  <i className="ri-heart-line"></i>
+              <div className='personalCare' id='Personal Care' onClick={categoryHandler}>
+                <div className='icon' id='Personal Care'>
+                  <i className="ri-heart-line" id='Personal Care'></i>
                 </div>
                 <p>Personal Care</p>
               </div>
-              <div className='miscellaneous'>
-                <div className='icon' value='Miscellaneous'>
-                  <i className="ri-file-copy-line"></i>
+              <div className='miscellaneous' id='Miscellaneous' onClick={categoryHandler}>
+                <div className='icon' id='Miscellaneous'>
+                  <i className="ri-file-copy-line" id='Miscellaneous'></i>
                 </div>
                 <p>Miscellaneous</p>
               </div>
