@@ -7,8 +7,6 @@ import {
   Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend,  ComposedChart, ResponsiveContainer, Area
 } from 'recharts'
 
-
-//* Incoming spend data have to come in as 1 array made up of individual arrays each containing 1 object (that contains the month spend)
 const Home = () => {
 
   const [category, setCategory] = React.useState(null)
