@@ -181,7 +181,30 @@ const Home = () => {
     setCategory(e.target.id)
   }
 
-  console.log(category)
+  const filterCategories = (transaction) => {
+    return transaction.category === category
+  }
+
+  const mapTransactions = (transaction, index) => {
+    return (
+      <div className='ind-transaction' key={index}>
+        <Avatar
+          name={transaction.name}
+          size='60'
+          round={true}
+          textSizeRatio={2}
+          className='avatar'
+        />
+        <div className='transaction-details'>
+          <p>{transaction.name}</p>
+          <p>{transaction.date}</p>
+        </div>
+        <div className='transaction-price'>
+          <p>£{transaction.price}</p>
+        </div>
+      </div>
+    )
+  }
 
   return (
     <div className='wrapper home-wrapper'>
@@ -193,50 +216,14 @@ const Home = () => {
             <Button variant='nav-theme'>Add Payment</Button>
           </div>
           <div className='home-summary-card-transactions'>
-            {/* {category === null ?
-              transactions.map((item,index) => {
-                return (
-                  <div className='ind-transaction' key={index}>
-                    <Avatar
-                      name={item.name}
-                      size='60'
-                      round={true}
-                      textSizeRatio={2}
-                      className='avatar'
-                    />
-                    <div className='transaction-details'>
-                      <p>{item.name}</p>
-                      <p>{item.date}</p>
-                    </div>
-                    <div className='transaction-price'>
-                      <p>£{item.price}</p>
-                    </div>
-                  </div>
-                )
-              })
+            {category === null ?
+              transactions
+                .map(mapTransactions)
               :
-
-            } */}
-            {transactions.map((item,index) => {
-              return (
-                <div className='ind-transaction' key={index}>
-                  <Avatar
-                    name={item.name}
-                    size='60'
-                    round={true}
-                    textSizeRatio={2}
-                    className='avatar'
-                  />
-                  <div className='transaction-details'>
-                    <p>{item.name}</p>
-                    <p>{item.date}</p>
-                  </div>
-                  <div className='transaction-price'>
-                    <p>£{item.price}</p>
-                  </div>
-                </div>
-              )
-            })}
+              transactions
+                .filter(filterCategories)
+                .map(mapTransactions)
+            }
           </div>
         </div>
       </div>
