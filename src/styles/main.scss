@@ -140,28 +140,50 @@ p {
     width: 60%;
     display: flex;
     flex-direction: column;
+    padding: 30px 0 30px 0;
     .home-stats-container {
-      flex: 2;
-      padding: 30px 0px 15px;
+      height: 70%;
       .home-graph-container {
-        display: flex;
-        align-items: center;
-        //To delete after
-        margin-top: 20%;
+        margin-top: 10%;
         margin-left: 5%;
+        display: flex;
+        .custom-tooltip {
+          margin: 0px;
+          padding: 20px;
+          background-color: rgba(43, 45, 73, 1);
+          border: 1px solid rgb(204, 204, 204);
+          border-radius: 15px;
+          white-space: nowrap;
+          .label-heading {
+            font-size: 24px;
+            color: white;
+          }
+          .label-spent {
+            font-size: 18px;
+            color: #00ACBD;
+          }
+          .label-saved {
+            font-size: 18px;
+            color: #EBAC7F;
+          }
+        }
+        .carousel-graph-container {
+          width: 100%;
+          .react-multiple-carousel__arrow--left {
+            margin-left: -3%;
+          }
+        }
       }
     }
     .home-categories-container {
-      flex: 1;
-      padding: 15px 0px 30px;
       display: flex;
       flex-direction: column;
       width: 100%;
+      height: 30%;
       .icons-container {
         flex: 1;
         display: flex;
         margin: 0 5%;
-        margin-top: 5%;
         .grocery {
           display: flex;
           flex-direction: column;
@@ -192,7 +214,7 @@ p {
           flex-direction: column;
           align-items: center;
         }
-        .eatingOut {
+        .foodDrink {
           display: flex;
           flex-direction: column;
           align-items: center;
@@ -241,6 +263,6 @@ p {
   transition: all .2s ease-in-out;
 }
 
-.carousel-container {
+.carousel-icon-container {
   width: 100%;
 }
