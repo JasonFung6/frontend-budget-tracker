@@ -1,0 +1,268 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import 'remixicon/fonts/remixicon.css';
+@import 'pure-react-carousel/dist/react-carousel.es.css';
+// @import "react-multi-carousel/lib/styles.css";
+
+//Bootstrap custom themes
+$theme-colors: (
+    "nav-theme": #2B2D49
+);
+
+@import "~bootstrap/scss/bootstrap";
+
+
+
+//Global page styles
+* {
+  font-family: 'Roboto', sans-serif;
+}
+
+.wrapper {
+  width: 100vw;
+  height: 90vh;
+}
+
+p {
+  margin: 0;
+}
+
+//Navbar styles
+.navbar {
+  .navbar-brand {
+    display: flex;
+    align-items: center;
+    img {
+      margin-right: 10%;
+    }
+    .user-greeting {
+      font-size: 14px;
+    }
+  }
+}
+
+@media only screen and (min-width: 990px) {
+  .navbar {
+    height: 10vh;
+    padding: 0 1rem;
+    .navbar-collapse {
+      height: 100%;
+      .navbar-nav {
+        height: 100%;
+        width: 70%;
+        display: flex;
+        justify-content: space-evenly;
+        .nav-link {
+          height: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex: 1;
+          color: white;
+        }
+        .nav-link:hover {
+          background-color: white;
+          color: #2B2D49;
+        }
+      }
+    }
+  }
+}
+
+//Home page styles
+.home-wrapper {
+  display: flex;
+  .home-LHS-container {
+    width: 40%;
+    padding: 30px;
+    display: flex;
+    justify-content: center;
+    .home-summary-card {
+      background-color: #F3F5F7;
+      border-radius: 5px;
+      border: 1px solid #F3F5F7;
+      height: 100%;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      .home-summary-card-balance {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 8% 0;
+        >h2 {
+          margin: 0;
+          font-size: 42px;
+        }
+        >p {
+          font-size: 18px;
+        }
+        button {
+          margin-top: 5%;
+          border-radius: 20px;
+          padding-left: 5%;
+          padding-right: 5%;
+          font-size: 13px;
+          font-weight: 100;
+        }
+      }
+      .home-summary-card-transactions {
+        overflow-y: scroll;
+        .ind-transaction {
+          display: flex;
+          margin: 7% 0;
+          >.avatar {
+            margin-left: 5%;
+          }
+          .transaction-details {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            flex: 1;
+            margin-left: 3%;
+            :first-child {
+              font-size: 20px;
+            }
+            :nth-child(2){
+              font-size: 12px;
+              color: gray;
+            }
+          }
+          .transaction-price {
+            margin-right: 5%;
+            display: flex;
+            align-items: center;
+          }
+        }
+      }
+    }
+  }
+  .home-RHS-container {
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    padding: 30px 0 30px 0;
+    .home-stats-container {
+      height: 70%;
+      .home-graph-container {
+        margin-top: 10%;
+        margin-left: 5%;
+        display: flex;
+        .custom-tooltip {
+          margin: 0px;
+          padding: 20px;
+          background-color: rgba(43, 45, 73, 1);
+          border: 1px solid rgb(204, 204, 204);
+          border-radius: 15px;
+          white-space: nowrap;
+          .label-heading {
+            font-size: 24px;
+            color: white;
+          }
+          .label-spent {
+            font-size: 18px;
+            color: #00ACBD;
+          }
+          .label-saved {
+            font-size: 18px;
+            color: #EBAC7F;
+          }
+        }
+        .carousel-graph-container {
+          width: 100%;
+          .react-multiple-carousel__arrow--left {
+            margin-left: -3%;
+          }
+        }
+      }
+    }
+    .home-categories-container {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      height: 30%;
+      .icons-container {
+        flex: 1;
+        display: flex;
+        margin: 0 5%;
+        .grocery {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+        }
+        .shopping {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+        }
+        .bill {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+        }
+        .entertainment {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+        }
+        .holiday {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+        }
+        .transport {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+        }
+        .foodDrink {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+        }
+        .charity {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+        }
+        .person {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+        }
+        .personalCare {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+        }
+        .miscellaneous {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+        }
+      }
+    }
+  }
+}
+
+.icon {
+  font-size: 28px;
+  color: white;
+  background-color: black;
+  border-radius: 20px;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 15%;
+  cursor: pointer;
+}
+
+.icon:hover {
+  transform: scale(1.2);
+  transition: all .2s ease-in-out;
+}
+
+.carousel-icon-container {
+  width: 100%;
+}
