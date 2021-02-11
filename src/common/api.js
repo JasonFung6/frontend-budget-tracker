@@ -4,6 +4,6 @@ import axios from 'axios'
 
 //GET all expenditure request
 export const getAllExpenditure = (accID, transactionNum) => {
-  const res = axios.get(`http://api.jasonfung.co.uk/budgettracker/?apiType=multi&accId=${accID}&orderBy=ascending&limit=${transactionNum}`)
+  const res = axios.get(`https://cors-anywhere.herokuapp.com/https://api.jasonfung.co.uk/budgettracker/?apiType=multi&accId=${accID}&orderBy=ascending&limit=${transactionNum}`)
   return res
 }
