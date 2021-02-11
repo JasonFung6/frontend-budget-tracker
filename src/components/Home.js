@@ -2,6 +2,7 @@ import React from 'react'
 import { Button } from 'react-bootstrap'
 import Avatar from 'react-avatar'
 import Carousel from 'react-multi-carousel'
+import getAllExpenditure from '../common/api'
 
 import {
   Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend,  ComposedChart, ResponsiveContainer, Area
@@ -174,6 +175,12 @@ const Home = () => {
   }]
 
   const balance = 568.80
+
+  React.useEffect(() => {
+    const accID = '0014K00000BWiJyQAL'
+    const transactionNum = 50
+
+  }, [])
 
   const categoryHandler = (e) => {
     setCategory(e.target.id)
