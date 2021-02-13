@@ -5,6 +5,6 @@ import axios from 'axios'
 
 //GET all expenditure request
 export const getAllExpenditure = (accID, transactionNum) => {
-  const res = axios.get(`https://api.jasonfung.co.uk/budgettracker/?apiType=multi&accId=${accID}&orderBy=ascending&limit=${transactionNum}`)
+  const res = axios.get(`https://expenditure-developer-edition.um6.force.com/budgettracker/services/apexrest/budgettracker/?apiType=multi&accId=${accID}&orderBy=ascending&limit=${transactionNum}`)
   return res
 }
