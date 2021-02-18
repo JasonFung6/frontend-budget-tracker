@@ -3,6 +3,7 @@ import { Button } from 'react-bootstrap'
 import Avatar from 'react-avatar'
 import Carousel from 'react-multi-carousel'
 import { getAllExpenditure } from '../common/api'
+import { timeConverter } from '../common/timeConverter'
 
 import {
   Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend,  ComposedChart, ResponsiveContainer, Area
@@ -11,6 +12,8 @@ import {
 const Home = () => {
 
   const [category, setCategory] = React.useState(null)
+
+  const [transactionsAPI, setTransactions] = React.useState(null)
 
   const CustomTooltip = ({ active, payload, label }) => {
     if (active) {
@@ -82,105 +85,112 @@ const Home = () => {
     }
   }
 
-  const transactions = [{
-    name: 'Netflix',
-    price: 20,
-    date: '12/04/2020',
-    category: 'Entertainment'
-  }, {
-    name: 'Amazon',
-    price: 120,
-    date: '12/04/2020',
-    category: 'Miscellaneous'
-  }, {
-    name: 'Samsung',
-    price: 230,
-    date: '11/04/2020',
-    category: 'Bill'
-  }, {
-    name: 'McDonalds',
-    price: 15.99,
-    date: '09/04/2020',
-    category: 'Food & Drink'
-  }, {
-    name: 'Tesco',
-    price: 175.85,
-    date: '08/04/2020',
-    category: 'Grocery'
-  }, {
-    name: 'Travel expenses',
-    price: 400,
-    date: '07/04/2020',
-    category: 'Holiday'
-  }, {
-    name: 'Asos',
-    price: 130,
-    date: '01/04/2020',
-    category: 'Shopping'
-  }, {
-    name: 'Asda',
-    price: 23,
-    date: '19/03/2020',
-    category: 'Grocery'
-  }, {
-    name: 'Uniqlo',
-    price: 90.50,
-    date: '18/03/2020',
-    category: 'Shopping'
-  }, {
-    name: 'Thames Water',
-    price: 90,
-    date: '10/03/2020',
-    category: 'Bill'
-  }, {
-    name: 'Louis Vuitton',
-    price: 1300,
-    date: '28/02/2020',
-    category: 'Shopping'
-  }, {
-    name: 'Dyson',
-    price: 200,
-    date: '27/02/2020',
-    category: 'Shopping'
-  }, {
-    name: 'Chanel',
-    price: 2650,
-    date: '27/02/2020',
-    category: 'Shopping'
-  }, {
-    name: 'Taxi',
-    price: 12.50,
-    date: '27/02/2020',
-    category: 'Transport'
-  }, {
-    name: 'Jason',
-    price: 36,
-    date: '20/02/2020',
-    category: 'Person'
-  }, {
-    name: 'Dentist',
-    price: 250,
-    date: '19/02/2020',
-    category: 'Personal Care'
-  }, {
-    name: 'Vitamins',
-    price: 12,
-    date: '18/02/2020',
-    category: 'Personal Care'
-  }, {
-    name: 'Unicef',
-    price: 20,
-    date: '17/02/2020',
-    category: 'Charity'
-  }]
+  // const transactions = [{
+  //   description: 'Netflix',
+  //   amount: 20,
+  //   date: '12/04/2020',
+  //   category: 'Entertainment'
+  // }, {
+  //   description: 'Amazon',
+  //   amount: 120,
+  //   date: '12/04/2020',
+  //   category: 'Miscellaneous'
+  // }, {
+  //   description: 'Samsung',
+  //   amount: 230,
+  //   date: '11/04/2020',
+  //   category: 'Bill'
+  // }, {
+  //   description: 'McDonalds',
+  //   amount: 15.99,
+  //   date: '09/04/2020',
+  //   category: 'Food & Drink'
+  // }, {
+  //   description: 'Tesco',
+  //   amount: 175.85,
+  //   date: '08/04/2020',
+  //   category: 'Grocery'
+  // }, {
+  //   description: 'Travel expenses',
+  //   amount: 400,
+  //   date: '07/04/2020',
+  //   category: 'Holiday'
+  // }, {
+  //   description: 'Asos',
+  //   amount: 130,
+  //   date: '01/04/2020',
+  //   category: 'Shopping'
+  // }, {
+  //   description: 'Asda',
+  //   amount: 23,
+  //   date: '19/03/2020',
+  //   category: 'Grocery'
+  // }, {
+  //   description: 'Uniqlo',
+  //   amount: 90.50,
+  //   date: '18/03/2020',
+  //   category: 'Shopping'
+  // }, {
+  //   description: 'Thames Water',
+  //   amount: 90,
+  //   date: '10/03/2020',
+  //   category: 'Bill'
+  // }, {
+  //   description: 'Louis Vuitton',
+  //   amount: 1300,
+  //   date: '28/02/2020',
+  //   category: 'Shopping'
+  // }, {
+  //   description: 'Dyson',
+  //   amount: 200,
+  //   date: '27/02/2020',
+  //   category: 'Shopping'
+  // }, {
+  //   description: 'Chanel',
+  //   amount: 2650,
+  //   date: '27/02/2020',
+  //   category: 'Shopping'
+  // }, {
+  //   description: 'Taxi',
+  //   amount: 12.50,
+  //   date: '27/02/2020',
+  //   category: 'Transport'
+  // }, {
+  //   description: 'Jason',
+  //   amount: 36,
+  //   date: '20/02/2020',
+  //   category: 'Person'
+  // }, {
+  //   description: 'Dentist',
+  //   amount: 250,
+  //   date: '19/02/2020',
+  //   category: 'Personal Care'
+  // }, {
+  //   description: 'Vitamins',
+  //   amount: 12,
+  //   date: '18/02/2020',
+  //   category: 'Personal Care'
+  // }, {
+  //   description: 'Unicef',
+  //   amount: 20,
+  //   date: '17/02/2020',
+  //   category: 'Charity'
+  // }]
 
   const balance = 568.80
 
   React.useEffect(async() => {
+    //* Need to input acc ID based on user login information
     const accID = '0014K00000BWiJyQAL'
     const transactionNum = 50
-    const transactionsFromAPI = await getAllExpenditure(accID, transactionNum)
-    console.log(transactionsFromAPI)
+    let transactionsFromAPI = await getAllExpenditure(accID, transactionNum)
+    // console.log(transactionsFromAPI)
+    transactionsFromAPI = transactionsFromAPI.data.map((transaction) => {
+      transaction.expenseDateTime = timeConverter(transaction.expenseDateTime)
+      return transaction
+    })
+    setTransactions(transactionsFromAPI)
+
   }, [])
 
   const categoryHandler = (e) => {
@@ -195,153 +205,156 @@ const Home = () => {
     return (
       <div className='ind-transaction' key={index}>
         <Avatar
-          name={transaction.name}
+          name={transaction.description}
           size='60'
           round={true}
           textSizeRatio={2}
           className='avatar'
         />
         <div className='transaction-details'>
-          <p>{transaction.name}</p>
+          <p>{transaction.description}</p>
           <p>{transaction.date}</p>
         </div>
         <div className='transaction-price'>
-          <p>£{transaction.price}</p>
+          <p>£{transaction.amount}</p>
         </div>
       </div>
     )
   }
-
+  console.log('Transaction state is:', transactionsAPI)
   return (
-    <div className='wrapper home-wrapper'>
-      <div className='home-LHS-container'>
-        <div className='home-summary-card'>
-          <div className='home-summary-card-balance'>
-            <h2>£{balance}</h2>
-            <p>Remaining</p>
-            <Button variant='nav-theme'>Add Payment</Button>
-          </div>
-          <div className='home-summary-card-transactions'>
-            {category === null ?
-              transactions
-                .map(mapTransactions)
-              :
-              transactions
-                .filter(filterCategories)
-                .map(mapTransactions)
-            }
+    transactionsAPI === null ?
+      <></>
+      :
+      <div className='wrapper home-wrapper'>
+        <div className='home-LHS-container'>
+          <div className='home-summary-card'>
+            <div className='home-summary-card-balance'>
+              <h2>£{balance}</h2>
+              <p>Remaining</p>
+              <Button variant='nav-theme'>Add Payment</Button>
+            </div>
+            <div className='home-summary-card-transactions'>
+              {category === null ?
+                transactionsAPI
+                  .map(mapTransactions)
+                :
+                transactionsAPI
+                  .filter(filterCategories)
+                  .map(mapTransactions)
+              }
+            </div>
           </div>
         </div>
-      </div>
-      <div className='home-RHS-container'>
-        <div className='home-stats-container'>
-          <h2>Spending Statistics</h2>
-          <div className='home-graph-container'>
-            <ResponsiveContainer
-              width='90%'
-              height={300}
-            >
-              <ComposedChart
-                data={data}
-                barCategoryGap='30%'
-                margin={{
-                  top: 20, right: 40, bottom: 20, left: 40
-                }}
+        <div className='home-RHS-container'>
+          <div className='home-stats-container'>
+            <h2>Spending Statistics</h2>
+            <div className='home-graph-container'>
+              <ResponsiveContainer
+                width='90%'
+                height={300}
               >
-                <CartesianGrid strokeDasharray="3 3" vertical={false} horizontal={false} />
-                <XAxis dataKey="name" axisLine={false} tickLine={false} />
-                <YAxis hide={true} />
-                <Tooltip cursor={false} offset={30} content={CustomTooltip} />
-                <Legend />
-                <Bar dataKey="Spent" stackId="a" fill="#00ACBD" radius={[0, 0, 10, 10]}animationDuration={1500}/>
-                <Bar dataKey="Saved" stackId="a" fill="#EBAC7F" radius={[10, 10, 0, 0]} animationDuration={1500}/>
-                <Area type="monotone" dataKey="Spent" stroke="#00BD35" dot={false} legendType="none" fill="#00ACBD" fillOpacity={0.2} strokeWidth={2} />
-              </ComposedChart>
-            </ResponsiveContainer>
+                <ComposedChart
+                  data={data}
+                  barCategoryGap='30%'
+                  margin={{
+                    top: 20, right: 40, bottom: 20, left: 40
+                  }}
+                >
+                  <CartesianGrid strokeDasharray="3 3" vertical={false} horizontal={false} />
+                  <XAxis dataKey="name" axisLine={false} tickLine={false} />
+                  <YAxis hide={true} />
+                  <Tooltip cursor={false} offset={30} content={CustomTooltip} />
+                  <Legend />
+                  <Bar dataKey="Spent" stackId="a" fill="#00ACBD" radius={[0, 0, 10, 10]}animationDuration={1500}/>
+                  <Bar dataKey="Saved" stackId="a" fill="#EBAC7F" radius={[10, 10, 0, 0]} animationDuration={1500}/>
+                  <Area type="monotone" dataKey="Spent" stroke="#00BD35" dot={false} legendType="none" fill="#00ACBD" fillOpacity={0.2} strokeWidth={2} />
+                </ComposedChart>
+              </ResponsiveContainer>
+            </div>
           </div>
-        </div>
-        <div className='home-categories-container'>
-          <h2>Expenditure - <span>Nov</span> - <span>£1,412</span></h2>
-          <div className='icons-container'>
-            <Carousel
-              responsive={responsive}
-              keyBoardControl={true}
-              transitionDuration={800}
-              containerClass="carousel-icon-container"
-              removeArrowOnDeviceType={['mobile']}
-              itemClass="carousel-item-padding-40-px"
-            >
-              <div className='grocery' id='Grocery' onClick={categoryHandler}>
-                <div className='icon' id='Grocery'>
-                  <i className="ri-shopping-cart-line" id='Grocery'></i>
+          <div className='home-categories-container'>
+            <h2>Expenditure - <span>Nov</span> - <span>£1,412</span></h2>
+            <div className='icons-container'>
+              <Carousel
+                responsive={responsive}
+                keyBoardControl={true}
+                transitionDuration={800}
+                containerClass="carousel-icon-container"
+                removeArrowOnDeviceType={['mobile']}
+                itemClass="carousel-item-padding-40-px"
+              >
+                <div className='grocery' id='Grocery' onClick={categoryHandler}>
+                  <div className='icon' id='Grocery'>
+                    <i className="ri-shopping-cart-line" id='Grocery'></i>
+                  </div>
+                  <p>Grocery</p>
                 </div>
-                <p>Grocery</p>
-              </div>
-              <div className='shopping' id='Shopping' onClick={categoryHandler}>
-                <div className='icon' id='Shopping'>
-                  <i className="ri-shopping-bag-line" id='Shopping'></i>
+                <div className='shopping' id='Shopping' onClick={categoryHandler}>
+                  <div className='icon' id='Shopping'>
+                    <i className="ri-shopping-bag-line" id='Shopping'></i>
+                  </div>
+                  <p>Shopping</p>
                 </div>
-                <p>Shopping</p>
-              </div>
-              <div className='bill' id='Bill' onClick={categoryHandler}>
-                <div className='icon' id='Bill'>
-                  <i className="ri-lightbulb-flash-line" id='Bill'></i>
+                <div className='bill' id='Bill' onClick={categoryHandler}>
+                  <div className='icon' id='Bill'>
+                    <i className="ri-lightbulb-flash-line" id='Bill'></i>
+                  </div>
+                  <p>Bill</p>
                 </div>
-                <p>Bill</p>
-              </div>
-              <div className='entertainment' id='Entertainment' onClick={categoryHandler}>
-                <div className='icon' id='Entertainment'>
-                  <i className="ri-game-line" id='Entertainment'></i>
+                <div className='entertainment' id='Entertainment' onClick={categoryHandler}>
+                  <div className='icon' id='Entertainment'>
+                    <i className="ri-game-line" id='Entertainment'></i>
+                  </div>
+                  <p>Entertainment</p>
                 </div>
-                <p>Entertainment</p>
-              </div>
-              <div className='holiday' id='Holiday' onClick={categoryHandler}>
-                <div className='icon' id='Holiday'>
-                  <i className="ri-plane-line" id='Holiday'></i>
+                <div className='holiday' id='Holiday' onClick={categoryHandler}>
+                  <div className='icon' id='Holiday'>
+                    <i className="ri-plane-line" id='Holiday'></i>
+                  </div>
+                  <p>Holiday</p>
                 </div>
-                <p>Holiday</p>
-              </div>
-              <div className='transport' id='Transport' onClick={categoryHandler}>
-                <div className='icon' id='Transport'>
-                  <i className="ri-car-line" id='Transport'></i>
+                <div className='transport' id='Transport' onClick={categoryHandler}>
+                  <div className='icon' id='Transport'>
+                    <i className="ri-car-line" id='Transport'></i>
+                  </div>
+                  <p>Transport</p>
                 </div>
-                <p>Transport</p>
-              </div>
-              <div className='foodDrink' id='Food & Drink' onClick={categoryHandler}>
-                <div className='icon' id='Food & Drink'>
-                  <i className="ri-restaurant-line" id='Food & Drink'></i>
+                <div className='foodDrink' id='Food&Drink' onClick={categoryHandler}>
+                  <div className='icon' id='Food&Drink'>
+                    <i className="ri-restaurant-line" id='Food&Drink'></i>
+                  </div>
+                  <p>Food & Drink</p>
                 </div>
-                <p>Food & Drink</p>
-              </div>
-              <div className='charity' id='Charity' onClick={categoryHandler}>
-                <div className='icon' id='Charity'>
-                  <i className="ri-service-line" id='Charity'></i>
+                <div className='charity' id='Charity' onClick={categoryHandler}>
+                  <div className='icon' id='Charity'>
+                    <i className="ri-service-line" id='Charity'></i>
+                  </div>
+                  <p>Charity</p>
                 </div>
-                <p>Charity</p>
-              </div>
-              <div className='person' id='Person' onClick={categoryHandler}>
-                <div className='icon' id='Person'>
-                  <i className="ri-user-line" id='Person'></i>
+                <div className='person' id='Person' onClick={categoryHandler}>
+                  <div className='icon' id='Person'>
+                    <i className="ri-user-line" id='Person'></i>
+                  </div>
+                  <p>Person</p>
                 </div>
-                <p>Person</p>
-              </div>
-              <div className='personalCare' id='Personal Care' onClick={categoryHandler}>
-                <div className='icon' id='Personal Care'>
-                  <i className="ri-heart-line" id='Personal Care'></i>
+                <div className='personalCare' id='Personal Care' onClick={categoryHandler}>
+                  <div className='icon' id='Personal Care'>
+                    <i className="ri-heart-line" id='Personal Care'></i>
+                  </div>
+                  <p>Personal Care</p>
                 </div>
-                <p>Personal Care</p>
-              </div>
-              <div className='miscellaneous' id='Miscellaneous' onClick={categoryHandler}>
-                <div className='icon' id='Miscellaneous'>
-                  <i className="ri-file-copy-line" id='Miscellaneous'></i>
+                <div className='miscellaneous' id='Miscellaneous' onClick={categoryHandler}>
+                  <div className='icon' id='Miscellaneous'>
+                    <i className="ri-file-copy-line" id='Miscellaneous'></i>
+                  </div>
+                  <p>Miscellaneous</p>
                 </div>
-                <p>Miscellaneous</p>
-              </div>
-            </Carousel>
+              </Carousel>
+            </div>
           </div>
         </div>
       </div>
-    </div>
   )
 }
 
