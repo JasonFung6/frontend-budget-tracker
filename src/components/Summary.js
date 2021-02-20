@@ -1,5 +1,7 @@
 import React from 'react'
 import { Button } from 'react-bootstrap'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons'
 
 import {
   PieChart, Pie, Cell
@@ -23,6 +25,8 @@ const Summary = () => {
   //* Assume that index 0 = January, 12 = December etc
   //* Call 'GET all expenditure' endpoint and then logic on FE to check the date, if month is 1 => add price to 'Spent' for January
   //* Store empty 'monthData' array in state that will be updated as each transaction is used to update state i.e. const monthData = [[{name:'Spent', value: 0}, {name:'Saved', value:0}],[{name:'Spent', value: 0}, {name:'Saved', value:0}]]
+  const monthsOfTheYear = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec']
+
   const monthData = [
     [
       {
@@ -258,17 +262,20 @@ const Summary = () => {
       <div className='button-wrapper'>
         <Button variant='nav-theme'>Add Payment</Button>
       </div>
+      <h2>Jan</h2>
+      <h3>2021</h3>
       <div className='graph-wrapper'>
         {//* Chevron arrows from font awesome, conditional rendering depending on
         }
-        <PieChart width={1200} height={500}>
+        <FontAwesomeIcon icon={faChevronLeft}/>
+        <PieChart width={600} height={480}>
           <Pie
             data={monthData[9]}
             cx='50%'
             cy='50%'
-            innerRadius={120}
-            outerRadius={200}
-            paddingAngle={5}
+            innerRadius={150}
+            outerRadius={220}
+            paddingAngle={3}
             dataKey="value"
           >
             {monthData[9].map((entry, index) => (
@@ -276,6 +283,7 @@ const Summary = () => {
             ))}
           </Pie>
         </PieChart>
+        <FontAwesomeIcon icon={faChevronRight}/>
       </div>
     </div>
   )
