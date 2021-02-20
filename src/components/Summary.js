@@ -7,6 +7,7 @@ import {
 
 const Summary = () => {
 
+  //* Add state for 'activeMonth', starting month = current month, set pie chart data as a 'controlled value' linking to state + update state and pie chart data as chevron btns are clicked
   // const CustomTooltip = ({ active, payload, label }) => {
   //   if (active) {
   //     return (
@@ -19,15 +20,116 @@ const Summary = () => {
   //   }
   //   return null
   // }
-
-  const janData = [
-    {
-      name: 'Spent', value: 400
-    },
-    {
-      name: 'Saved', value: 600
-    }
+  //* Assume that index 0 = January, 12 = December etc
+  //* Call 'GET all expenditure' endpoint and then logic on FE to check the date, if month is 1 => add price to 'Spent' for January
+  //* Store empty 'monthData' array in state that will be updated as each transaction is used to update state i.e. const monthData = [[{name:'Spent', value: 0}, {name:'Saved', value:0}],[{name:'Spent', value: 0}, {name:'Saved', value:0}]]
+  const monthData = [
+    [
+      {
+        name: 'Spent', value: 400
+      },
+      {
+        name: 'Saved', value: 600
+      }
+    ],
+    [
+      {
+        name: 'Spent', value: 300
+      },
+      {
+        name: 'Saved', value: 1700
+      }
+    ],
+    [
+      {
+        name: 'Spent', value: 200
+      },
+      {
+        name: 'Saved', value: 800
+      }
+    ],
+    [
+      {
+        name: 'Spent', value: 278
+      },
+      {
+        name: 'Saved', value: 722
+      }
+    ],
+    [
+      {
+        name: 'Spent', value: 189
+      },
+      {
+        name: 'Saved', value: 811
+      }
+    ],
+    [
+      {
+        name: 'Spent', value: 239
+      },
+      {
+        name: 'Saved', value: 761
+      }
+    ],
+    [
+      {
+        name: 'Spent', value: 349
+      },
+      {
+        name: 'Saved', value: 651
+      }
+    ],
+    [
+      {
+        name: 'Spent', value: 200
+      },
+      {
+        name: 'Saved', value: 800
+      }
+    ],
+    [
+      {
+        name: 'Spent', value: 278
+      },
+      {
+        name: 'Saved', value: 722
+      }
+    ],
+    [
+      {
+        name: 'Spent', value: 189
+      },
+      {
+        name: 'Saved', value: 811
+      }
+    ],
+    [
+      {
+        name: 'Spent', value: 239
+      },
+      {
+        name: 'Saved', value: 761
+      }
+    ],
+    [
+      {
+        name: 'Spent', value: 349
+      },
+      {
+        name: 'Saved', value: 651
+      }
+    ]
   ]
+
+  // const janData = [
+  //   {
+  //     name: 'Spent', value: 400
+  //   },
+  //   {
+  //     name: 'Saved', value: 600
+  //   }
+  // ]
 
   const COLORS = ['#00ACBD', '#EBAC7F']
 
@@ -143,23 +245,33 @@ const Summary = () => {
 
   // const balance = 568.80
 
+  // const handleLeftBtn = () => {
+
+  // }
+
+  // const handleRightBtn = () => {
+
+  // }
+
   return (
     <div className='wrapper summary-wrapper'>
       <div className='button-wrapper'>
         <Button variant='nav-theme'>Add Payment</Button>
       </div>
       <div className='graph-wrapper'>
+        {//* Chevron arrows from font awesome, conditional rendering depending on
+        }
         <PieChart width={1200} height={500}>
           <Pie
-            data={janData}
+            data={monthData[9]}
             cx='50%'
             cy='50%'
-            innerRadius={150}
-            outerRadius={170}
+            innerRadius={120}
+            outerRadius={200}
             paddingAngle={5}
             dataKey="value"
           >
-            {janData.map((entry, index) => (
+            {monthData[9].map((entry, index) => (
               <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
             ))}
           </Pie>
