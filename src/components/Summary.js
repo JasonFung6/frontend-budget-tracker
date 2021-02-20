@@ -10,6 +10,11 @@ import {
 const Summary = () => {
 
   //* Add state for 'activeMonth', starting month = current month, set pie chart data as a 'controlled value' linking to state + update state and pie chart data as chevron btns are clicked
+
+  const currentDate = new Date()
+
+
+  const [activeMonth, setActiveMonth] = React.useState(currentDate.toLocaleString('en-GB', { month: 'short' }))
   // const CustomTooltip = ({ active, payload, label }) => {
   //   if (active) {
   //     return (
@@ -249,9 +254,14 @@ const Summary = () => {
 
   // const balance = 568.80
 
-  // const handleLeftBtn = () => {
-
-  // }
+  const handleLeftBtn = () => {
+    //* Use 'findIndex()' to match the 'activeMonth' from state in 'monthsOfTheYear' array and output the index, then reduce the index no. and update the state of the 'activeMonth'
+    console.log('The current active month is:', activeMonth)
+    const index = monthsOfTheYear.findIndex((month) => {
+      return month === activeMonth
+    })
+    console.log('The index number for the active month is:', index)
+  }
 
   // const handleRightBtn = () => {
 
@@ -267,7 +277,7 @@ const Summary = () => {
       <div className='graph-wrapper'>
         {//* Chevron arrows from font awesome, conditional rendering depending on
         }
-        <FontAwesomeIcon icon={faChevronLeft}/>
+        <FontAwesomeIcon icon={faChevronLeft} onClick={handleLeftBtn}/>
         <PieChart width={600} height={480}>
           <Pie
             data={monthData[9]}
