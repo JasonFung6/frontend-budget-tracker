@@ -7,14 +7,26 @@ import {
   PieChart, Pie, Cell
 } from 'recharts'
 
+const monthsOfTheYear = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec']
+
+const currentDate = new Date()
+
+const findActiveMonth = () => {
+  const monthIndex = monthsOfTheYear.findIndex((month) => {
+    return month === currentDate.toLocaleString('en-GB', { month: 'short' })
+  })
+  return monthIndex
+}
+
 const Summary = () => {
 
-  //* Add state for 'activeMonth', starting month = current month, set pie chart data as a 'controlled value' linking to state + update state and pie chart data as chevron btns are clicked
-
-  const currentDate = new Date()
+  //* Add state for 'activeMonth', 'monthIndex', starting month = current month, set pie chart data as a 'controlled value' linking to state + update state and pie chart data as chevron btns are clicked
 
 
-  const [activeMonth, setActiveMonth] = React.useState(currentDate.toLocaleString('en-GB', { month: 'short' }))
+  const [monthIndex, setMonthIndex] = React.useState(findActiveMonth())
+  const [activeMonth, setActiveMonth] = React.useState(monthsOfTheYear[findActiveMonth()])
+  const [activeYear, setActiveYear] = React.useState(parseInt(currentDate.toLocaleString('en-GB', { year: 'numeric' })))
+
   // const CustomTooltip = ({ active, payload, label }) => {
   //   if (active) {
   //     return (
@@ -30,7 +42,7 @@ const Summary = () => {
   //* Assume that index 0 = January, 12 = December etc
   //* Call 'GET all expenditure' endpoint and then logic on FE to check the date, if month is 1 => add price to 'Spent' for January
   //* Store empty 'monthData' array in state that will be updated as each transaction is used to update state i.e. const monthData = [[{name:'Spent', value: 0}, {name:'Saved', value:0}],[{name:'Spent', value: 0}, {name:'Saved', value:0}]]
-  const monthsOfTheYear = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec']
+
 
   const monthData = [
     [
@@ -130,15 +142,6 @@ const Summary = () => {
       }
     ]
   ]
-
-  // const janData = [
-  //   {
-  //     name: 'Spent', value: 400
-  //   },
-  //   {
-  //     name: 'Saved', value: 600
-  //   }
-  // ]
 
   const COLORS = ['#00ACBD', '#EBAC7F']
 
@@ -252,35 +255,51 @@ const Summary = () => {
   //   category: 'Charity'
   // }]
 
-  // const balance = 568.80
-
   const handleLeftBtn = () => {
-    //* Use 'findIndex()' to match the 'activeMonth' from state in 'monthsOfTheYear' array and output the index, then reduce the index no. and update the state of the 'activeMonth'
-    console.log('The current active month is:', activeMonth)
-    const index = monthsOfTheYear.findIndex((month) => {
-      return month === activeMonth
-    })
-    console.log('The index number for the active month is:', index)
+    //* For Month View => Reduce the index no. and update the state of the 'activeMonth', 'monthIndex', 'activeYear'
+    if (monthIndex !== 0) {
+      setMonthIndex(monthIndex - 1)
+      setActiveMonth(monthsOfTheYear[monthIndex - 1])
+      return
+    } else {
+      setMonthIndex(monthIndex + 11)
+      setActiveMonth(monthsOfTheYear[monthIndex + 11])
+      setActiveYear(activeYear - 1)
+      return
+    }
   }
 
-  // const handleRightBtn = () => {
+  const handleRightBtn = () => {
+    if (monthIndex !== 11) {
+      setMonthIndex(monthIndex + 1)
+      setActiveMonth(monthsOfTheYear[monthIndex + 1])
+      return
+    } else {
+      setMonthIndex(monthIndex - 11)
+      setActiveMonth(monthsOfTheYear[monthIndex - 11])
+      setActiveYear(activeYear + 1)
+      return
+    }
+  }
 
-  // }
-
+  console.log('The current active month is:', activeMonth)
+  console.log('The current index is:', monthIndex)
+  console.log('The current year is:', activeYear)
+  console.log(typeof(activeYear))
   return (
     <div className='wrapper summary-wrapper'>
       <div className='button-wrapper'>
         <Button variant='nav-theme'>Add Payment</Button>
       </div>
-      <h2>Jan</h2>
-      <h3>2021</h3>
+      <h2>{activeMonth}</h2>
+      <h3>{activeYear}</h3>
       <div className='graph-wrapper'>
         {//* Chevron arrows from font awesome, conditional rendering depending on
         }
         <FontAwesomeIcon icon={faChevronLeft} onClick={handleLeftBtn}/>
         <PieChart width={600} height={480}>
           <Pie
-            data={monthData[9]}
+            data={monthData[monthIndex]}
             cx='50%'
             cy='50%'
             innerRadius={150}
@@ -288,12 +307,12 @@ const Summary = () => {
             paddingAngle={3}
             dataKey="value"
           >
-            {monthData[9].map((entry, index) => (
+            {monthData[monthIndex].map((entry, index) => (
               <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
             ))}
           </Pie>
         </PieChart>
-        <FontAwesomeIcon icon={faChevronRight}/>
+        <FontAwesomeIcon icon={faChevronRight} onClick={handleRightBtn}/>
       </div>
     </div>
   )
